@@ -1,6 +1,6 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import withRoot from "./withRoot";
+import logo from "./logo.svg";
 
 function App() {
   return (
@@ -23,4 +23,4 @@ function App() {
   );
 }
 
-export default App;
+export default withRoot(App);
