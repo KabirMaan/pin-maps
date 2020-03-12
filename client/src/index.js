@@ -1,17 +1,24 @@
-import React from "react";
+import React, { useContext, useReducer } from "react";
 import App from "./App";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import * as serviceWorker from "./serviceWorker";
 import LoginPage from "./pages/LoginPage";
+import Context from "./context";
+import reducer from "./reducer";
 
 const Root = () => {
+  const initialState = useContext(Context);
+  const [state, dispatch] = useReducer(reducer, initialState);
+  console.log(state);
   return (
     <Router>
-      <Switch>
-        <Route exact path="/" component={App} />
-        <Route exact path="/login" component={LoginPage} />
-      </Switch>
+      <Context.Provider value={{ state, dispatch }}>
+        <Switch>
+          <Route exact path="/" component={App} />
+          <Route exact path="/login" component={LoginPage} />
+        </Switch>
+      </Context.Provider>
     </Router>
   );
 };
