@@ -6,6 +6,7 @@ import * as serviceWorker from "./serviceWorker";
 import LoginPage from "./pages/LoginPage";
 import Context from "./context";
 import reducer from "./reducer";
+import ProtectedRoute from "./ProtectedRoute";
 
 const Root = () => {
   const initialState = useContext(Context);
@@ -15,7 +16,7 @@ const Root = () => {
     <Router>
       <Context.Provider value={{ state, dispatch }}>
         <Switch>
-          <Route exact path="/" component={App} />
+          <ProtectedRoute exact path="/" component={App} />
           <Route exact path="/login" component={LoginPage} />
         </Switch>
       </Context.Provider>
