@@ -4,6 +4,7 @@
     "dotenv": "^8.2.0",
     "google-auth-library": "^5.10.1",
     "graphql": "^14.6.0",
+    "graphql-request": "^1.8.2",
     "mongoose": "^5.9.4",
     "react-google-login": "^5.1.1"
   },
