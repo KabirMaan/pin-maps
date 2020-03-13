@@ -2,11 +2,15 @@ import React from "react";
 import withRoot from "./withRoot";
 import logo from "./logo.svg";
 import Header from "./components/Header";
+import Map from "./components/Map";
+
 function App() {
   return (
-    <div className="App">
+    <>
       <Header />
-      <img src={logo} className="App-logo" alt="logo" />
+      <Map />
+
+      {/* <img src={logo} className="App-logo" alt="logo" />
       <p>
         Edit <code>src/App.js</code> and save to reload.
       </p>
@@ -17,8 +21,8 @@ function App() {
         rel="noopener noreferrer"
       >
         Learn React
-      </a>
-    </div>
+      </a> */}
+    </>
   );
 }
 
