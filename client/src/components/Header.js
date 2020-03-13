@@ -5,6 +5,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import MapIcon from "@material-ui/icons/Map";
 import Typography from "@material-ui/core/Typography";
+import Logout from "./Auth/Logout";
 
 const Header = ({ classes }) => {
   const { state } = useContext(Context);
@@ -32,6 +33,7 @@ const Header = ({ classes }) => {
               </Typography>
             </div>
           )}
+          <Logout />
         </Toolbar>
       </AppBar>
     </div>
@@ -48,7 +50,7 @@ const styles = theme => ({
     alignItems: "center"
   },
   icon: {
-    marginRight: theme.spacing.unit,
+    marginRight: theme.spacing(1),
     color: "green",
     fontSize: 45
   },
@@ -58,7 +60,7 @@ const styles = theme => ({
   picture: {
     height: "50px",
     borderRadius: "90%",
-    marginRight: theme.spacing.unit * 2
+    marginRight: theme.spacing(2)
   }
 });
 

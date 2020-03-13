@@ -5,6 +5,12 @@ export default function reducer(state, action) {
         ...state,
         currentUser: action.payload
       };
+    case "LOGOUT_USER":
+      return {
+        ...state,
+        currentUser: null,
+        isAuthenticated: false
+      };
     case "IS_LOGGED_IN":
       return {
         ...state,
