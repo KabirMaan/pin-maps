@@ -7,6 +7,7 @@ import Context from "../context";
 import Blog from "./Blog";
 import { GET_PINS_QUERY } from "../graphql/queries";
 import { useClient } from "../client";
+import differenceInMinutes from "date-fns/differenceInMinutes";
 // import Button from "@material-ui/core/Button";
 // import Typography from "@material-ui/core/Typography";
 // import DeleteIcon from "@material-ui/icons/DeleteTwoTone";
@@ -61,6 +62,12 @@ const Map = ({ classes }) => {
     });
   };
 
+  const highlightNewPin = pin => {
+    const isNewPin =
+      differenceInMinutes(Date.now(), Number(pin.createdAt)) <= 30;
+    return isNewPin ? "limegreen" : "darkblue";
+  };
+
   return (
     <div className={classes.root}>
       <ReactMapGL
@@ -102,7 +109,7 @@ const Map = ({ classes }) => {
             offsetLeft={-19}
             offsetTop={-37}
           >
-            <PinIcon size={40} color="darkblue" />
+            <PinIcon size={40} color={highlightNewPin(pin)} />
           </Marker>
         ))}
       </ReactMapGL>
