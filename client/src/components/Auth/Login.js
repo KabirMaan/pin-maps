@@ -5,7 +5,7 @@ import { GraphQLClient } from "graphql-request";
 import Typography from "@material-ui/core/Typography";
 
 import Context from "../../context";
-import { ME_QUERY } from "../../graphql/queries";
+import { ME_QUERY } from "../../graphql/queries.js";
 import { BASE_URL } from "../../client";
 
 const Login = ({ classes }) => {

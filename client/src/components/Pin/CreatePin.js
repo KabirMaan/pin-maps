@@ -9,7 +9,7 @@ import LandscapeIcon from "@material-ui/icons/LandscapeOutlined";
 import ClearIcon from "@material-ui/icons/Clear";
 import SaveIcon from "@material-ui/icons/SaveTwoTone";
 import Context from "../../context";
-import { CREATE_PIN_MUTATION } from "../../graphql/mutations";
+import { CREATE_PIN_MUTATION } from "../../graphql/mutations.js";
 import { useClient } from "../../client";
 
 const CreatePin = ({ classes }) => {
