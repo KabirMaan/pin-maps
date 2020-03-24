@@ -22,7 +22,8 @@ export default function reducer(state, action) {
         draft: {
           longitude: 0,
           latitude: 0
-        }
+        },
+        currentPin: null
       };
     case "UPDATE_DRAFT_LOCATION":
       return {
@@ -45,6 +46,12 @@ export default function reducer(state, action) {
       return {
         ...state,
         pins: [...prevPins, newPin]
+      };
+    case "SET_PIN":
+      return {
+        ...state,
+        currentPin: action.payload,
+        draft: null
       };
     default:
       return state;
