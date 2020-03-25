@@ -29,3 +29,28 @@ deletePin(pinId: $pinId) {
     _id
 }
 }`;
+
+export const CREATE_COMMENT_MUTATION = `
+mutation($pinId: ID!, $text: String!){
+    createComment(pinId: $pinId, text:$text){
+        _id
+        createdAt
+        title
+        image
+        content
+        latitude
+        longitude
+        author {
+            _id
+            name
+        }
+        comments {
+            text
+            createdAt
+            author {
+                name
+                picture
+            }
+        }
+    }
+}`;

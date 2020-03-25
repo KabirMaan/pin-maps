@@ -139,7 +139,7 @@ const Map = ({ classes }) => {
             />
           </Marker>
         ))}
-        {popup && (
+        {popup && !state.draft && (
           <Popup
             anchor="top"
             latitude={popup.latitude}
