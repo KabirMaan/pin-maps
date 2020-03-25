@@ -7,6 +7,22 @@ import LoginPage from "./pages/LoginPage";
 import Context from "./context";
 import reducer from "./reducer";
 import ProtectedRoute from "./ProtectedRoute";
+import { ApolloProvider } from "react-apollo";
+import { WebSocketLink } from "apollo-link-ws";
+import { InMemoryCache } from "apollo-cache-inmemory";
+import { ApolloClient } from "apollo-client";
+
+const wsLink = new WebSocketLink({
+  uri: "ws://localhost:4000/graphql",
+  options: {
+    reconnect: true
+  }
+});
+
+const client = new ApolloClient({
+  link: wsLink,
+  cache: new InMemoryCache()
+});
 
 const Root = () => {
   const initialState = useContext(Context);
@@ -14,12 +30,14 @@ const Root = () => {
   console.log(state);
   return (
     <Router>
-      <Context.Provider value={{ state, dispatch }}>
-        <Switch>
-          <ProtectedRoute exact path="/" component={App} />
-          <Route exact path="/login" component={LoginPage} />
-        </Switch>
-      </Context.Provider>
+      <ApolloProvider client={client}>
+        <Context.Provider value={{ state, dispatch }}>
+          <Switch>
+            <ProtectedRoute exact path="/" component={App} />
+            <Route exact path="/login" component={LoginPage} />
+          </Switch>
+        </Context.Provider>
+      </ApolloProvider>
     </Router>
   );
 };
