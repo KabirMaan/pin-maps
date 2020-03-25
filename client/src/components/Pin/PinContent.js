@@ -5,6 +5,8 @@ import Typography from "@material-ui/core/Typography";
 import AccessTime from "@material-ui/icons/AccessTime";
 import Face from "@material-ui/icons/Face";
 import format from "date-fns/format";
+import CreateComment from "../Comment/CreateComment";
+import Comments from "../Comment/Comments";
 
 const PinContent = ({ classes }) => {
   const { state } = useContext(Context);
@@ -36,6 +38,8 @@ const PinContent = ({ classes }) => {
       <Typography variant="subtitle1" gutterBottom>
         {content}
       </Typography>
+      <CreateComment />
+      <Comments comments={comments} />
     </div>
   );
 };
