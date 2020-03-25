@@ -6,8 +6,10 @@ import Toolbar from "@material-ui/core/Toolbar";
 import MapIcon from "@material-ui/icons/Map";
 import Typography from "@material-ui/core/Typography";
 import Logout from "./Auth/Logout";
+import { useMediaQuery } from "@material-ui/core";
 
 const Header = ({ classes }) => {
+  const mobileSize = useMediaQuery("(max-width:650px)");
   const { state } = useContext(Context);
   const { currentUser } = state;
   return (
@@ -16,7 +18,13 @@ const Header = ({ classes }) => {
         <Toolbar>
           <div className={classes.grow}>
             <MapIcon className={classes.icon} />
-            <Typography component="h1" variant="h6" color="inherit" noWrap>
+            <Typography
+              className={mobileSize ? classes.mobile : ""}
+              component="h1"
+              variant="h6"
+              color="inherit"
+              noWrap
+            >
               PinMaps
             </Typography>
           </div>
@@ -28,7 +36,12 @@ const Header = ({ classes }) => {
                 src={currentUser.picture}
                 alt={currentUser.name}
               />
-              <Typography variant="h5" color="inherit" noWrap>
+              <Typography
+                className={mobileSize ? classes.mobile : ""}
+                variant="h5"
+                color="inherit"
+                noWrap
+              >
                 {currentUser.name}
               </Typography>
             </div>

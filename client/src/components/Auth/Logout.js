@@ -4,8 +4,10 @@ import { withStyles } from "@material-ui/core/styles";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import Typography from "@material-ui/core/Typography";
 import Context from "../../context";
+import { useMediaQuery } from "@material-ui/core";
 
 const Logout = ({ classes }) => {
+  const mobileSize = useMediaQuery("(max-width: 650px)");
   const { dispatch } = useContext(Context);
 
   const onLogout = () => {
@@ -17,9 +19,11 @@ const Logout = ({ classes }) => {
       onLogoutSuccess={onLogout}
       render={({ onClick }) => (
         <span className={classes.root} onClick={onClick}>
-          <Typography variant="body1" className={classes.buttonText}>
-            Logout
-          </Typography>
+          {!mobileSize && (
+            <Typography variant="body1" className={classes.buttonText}>
+              Logout
+            </Typography>
+          )}
           <ExitToAppIcon className={classes.buttonIcon} />
         </span>
       )}

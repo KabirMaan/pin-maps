@@ -9,7 +9,7 @@ import { GET_PINS_QUERY } from "../graphql/queries";
 import { DELETE_PIN_MUTATION } from "../graphql/mutations";
 import { useClient } from "../client";
 import differenceInMinutes from "date-fns/differenceInMinutes";
-import { Typography, Button } from "@material-ui/core";
+import { Typography, Button, useMediaQuery } from "@material-ui/core";
 // import Button from "@material-ui/core/Button";
 // import Typography from "@material-ui/core/Typography";
 import DeleteIcon from "@material-ui/icons/DeleteTwoTone";
@@ -22,6 +22,7 @@ import {
 
 const Map = ({ classes }) => {
   const client = useClient();
+  const mobileSize = useMediaQuery("(max-width: 650px)");
   const { state, dispatch } = useContext(Context);
 
   useEffect(() => {
@@ -98,13 +99,14 @@ const Map = ({ classes }) => {
   };
 
   return (
-    <div className={classes.root}>
+    <div className={mobileSize ? classes.rootMobile : classes.root}>
       <ReactMapGL
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_API_ACCESS_TOKEN}
         mapStyle="mapbox://styles/mapbox/streets-v9"
         {...viewport}
         onViewportChange={setViewport}
         onClick={handleMapClick}
+        scrollZoom={!mobileSize}
       >
         <div className={classes.navigationControl}>
           <NavigationControl onViewportChange={setViewport} />
