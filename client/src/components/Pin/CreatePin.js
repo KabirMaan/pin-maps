@@ -107,12 +107,12 @@ const CreatePin = ({ classes }) => {
       </div>
       <div>
         <Button
-          className={classes.button}
+          className={`${classes.button} ${classes.delete}`}
           variant="contained"
-          color="primary"
+          // color={red[500]}
           onClick={handleDeleteDraft}
         >
-          <ClearIcon className={classes.leftIcon} /> Discared
+          <ClearIcon className={classes.leftIcon} /> Discard
         </Button>
         <Button
           type="submit"
@@ -167,6 +167,24 @@ const styles = theme => ({
     marginBottom: theme.spacing(2),
     marginRight: theme.spacing(1),
     marginLeft: 0
+  },
+  delete: {
+    color: "white",
+    backgroundColor: "#dc004e",
+    borderColor: "#dc004e",
+    "&:hover": {
+      backgroundColor: "#9a0036",
+      borderColor: "#9a0036",
+      boxShadow: "none"
+    },
+    "&:active": {
+      boxShadow: "none",
+      backgroundColor: "#0062cc",
+      borderColor: "#005cbf"
+    },
+    "&:focus": {
+      boxShadow: "0 0 0 0.2rem rgba(0,123,255,.5)"
+    }
   }
 });
 

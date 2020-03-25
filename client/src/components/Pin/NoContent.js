@@ -1,11 +1,11 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
-import ExploreIcon from "@material-ui/icons/Explore";
+import TouchAppIcon from "@material-ui/icons/TouchApp";
 import Typography from "@material-ui/core/Typography";
 
 const NoContent = ({ classes }) => (
   <div className={classes.root}>
-    <ExploreIcon className={classes.icon} />
+    <TouchAppIcon className={classes.icon} />
     <Typography
       noWrap
       component="h2"

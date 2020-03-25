@@ -1,23 +1,42 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { withStyles } from "@material-ui/core/styles";
+import { GoogleLogout } from "react-google-login";
 import Context from "../context";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import MapIcon from "@material-ui/icons/Map";
+import IconButton from "@material-ui/core/IconButton";
+import MenuItem from "@material-ui/core/MenuItem";
+import Menu from "@material-ui/core/Menu";
+import Public from "@material-ui/icons/Public";
 import Typography from "@material-ui/core/Typography";
-import Logout from "./Auth/Logout";
 import { useMediaQuery } from "@material-ui/core";
 
 const Header = ({ classes }) => {
   const mobileSize = useMediaQuery("(max-width:650px)");
-  const { state } = useContext(Context);
+  const { state, dispatch } = useContext(Context);
+  const [anchorEl, setAnchorEl] = React.useState(null);
   const { currentUser } = state;
+  const open = Boolean(anchorEl);
+
+  const handleMenu = event => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const onLogout = () => {
+    dispatch({ type: "LOGOUT_USER" });
+    console.log("LOGGED OUT user");
+  };
+
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" className={classes.appBar}>
         <Toolbar>
           <div className={classes.grow}>
-            <MapIcon className={classes.icon} />
+            <Public className={classes.icon} />
             <Typography
               className={mobileSize ? classes.mobile : ""}
               component="h1"
@@ -28,25 +47,50 @@ const Header = ({ classes }) => {
               PinMaps
             </Typography>
           </div>
-
           {currentUser && (
-            <div className={classes.grow}>
-              <img
-                className={classes.picture}
-                src={currentUser.picture}
-                alt={currentUser.name}
-              />
-              <Typography
-                className={mobileSize ? classes.mobile : ""}
-                variant="h5"
+            <div>
+              <IconButton
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
                 color="inherit"
-                noWrap
               >
-                {currentUser.name}
-              </Typography>
+                <img
+                  className={classes.picture}
+                  src={currentUser.picture}
+                  alt={currentUser.name}
+                />
+              </IconButton>
+
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right"
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right"
+                }}
+                open={open}
+                onClose={handleClose}
+              >
+                <MenuItem disabled>Profile</MenuItem>
+                <MenuItem disabled>My Account</MenuItem>
+                <MenuItem>
+                  <GoogleLogout
+                    onLogoutSuccess={onLogout}
+                    render={({ onClick }) => (
+                      <span onClick={onClick}>Logout</span>
+                    )}
+                  />
+                </MenuItem>
+              </Menu>
             </div>
           )}
-          <Logout />
         </Toolbar>
       </AppBar>
     </div>
@@ -62,18 +106,20 @@ const styles = theme => ({
     display: "flex",
     alignItems: "center"
   },
+  appBar: { boxShadow: "none" },
+
   icon: {
     marginRight: theme.spacing(1),
-    color: "green",
+    color: "white",
     fontSize: 45
   },
   mobile: {
     display: "none"
   },
+
   picture: {
-    height: "50px",
-    borderRadius: "90%",
-    marginRight: theme.spacing(2)
+    height: "30px",
+    borderRadius: "90%"
   }
 });
 
