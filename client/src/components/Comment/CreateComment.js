@@ -11,16 +11,13 @@ import { CREATE_COMMENT_MUTATION } from "../../graphql/mutations";
 
 const CreateComment = ({ classes }) => {
   const client = useClient();
-  const { state, dispatch } = useContext(Context);
+  const { state } = useContext(Context);
   const [comment, setComment] = useState("");
 
   const handleSubmitComment = async () => {
     const variables = { pinId: state.currentPin._id, text: comment };
-    const { createComment } = await client.request(
-      CREATE_COMMENT_MUTATION,
-      variables
-    );
-    dispatch({ type: "CREATE_COMMENT", payload: createComment });
+    await client.request(CREATE_COMMENT_MUTATION, variables);
+
     setComment("");
   };
   return (
