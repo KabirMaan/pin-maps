@@ -8,10 +8,9 @@
       "config": { "distDir": "build" }
     }
   ],
-
   "build": {
     "env": {
-      "OAUTH_CLIENT_ID": "@oauth_client-id"
+      "OAUTH_CLIENT_ID": "@oauth_client_id"
     }
   },
   "routes": [
