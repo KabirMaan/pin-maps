@@ -13,7 +13,7 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 import { ApolloClient } from "apollo-client";
 
 const wsLink = new WebSocketLink({
-  uri: "wss://localhost:4000/graphql",
+  uri: "wss://pin-maps.herokuapp.com/graphql",
   options: {
     reconnect: true
   }
