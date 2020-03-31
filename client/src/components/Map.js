@@ -109,7 +109,7 @@ const Map = ({ classes }) => {
   return (
     <div className={mobileSize ? classes.rootMobile : classes.root}>
       <ReactMapGL
-        mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_API_ACCESS_TOKEN}
+        mapboxApiAccessToken={process.env.MAPBOX_API_ACCESS_TOKEN || process.env.REACT_APP_MAPBOX_API_ACCESS_TOKEN}
         mapStyle="mapbox://styles/mapbox/streets-v9"
         {...viewport}
         onViewportChange={setViewport}
