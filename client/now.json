@@ -5,12 +5,15 @@
     {
       "src": "package.json",
       "use": "@now/static-build",
-      "config": { "distDir": "build" },
-      "env": {
-        "OAUTH_CLIENT_ID": "@oauth_client-id"
-      }
+      "config": { "distDir": "build" }
     }
   ],
+
+  "build": {
+    "env": {
+      "OAUTH_CLIENT_ID": "@oauth_client-id"
+    }
+  },
   "routes": [
     {
       "src": "^/static/(.*)",
